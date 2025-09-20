@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.eflow/payroll-result.json",
+  "title": "PayrollResultSchema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "jurisdiction",
+    "earnings",
+    "bases",
+    "contributions",
+    "withholding",
+    "net",
+    "cra_map",
+    "trace",
+    "warnings"
+  ],
+  "properties": {
+    "jurisdiction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "irpf_regime",
+        "province_foral"
+      ],
+      "properties": {
+        "irpf_regime": {
+          "type": "string",
+          "enum": [
+            "AEAT",
+            "FORAL_NAVARRA",
+            "FORAL_PV"
+          ]
+        },
+        "province_foral": {
+          "type": "string",
+          "enum": [
+            "",
+            "Araba/Álava",
+            "Bizkaia",
+            "Gipuzkoa"
+          ]
+        }
+      }
+    },
+    "earnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "concept",
+          "amount",
+          "taxable",
+          "contributory",
+          "cra_code"
+        ],
+        "properties": {
+          "concept": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "taxable": {
+            "type": "boolean"
+          },
+          "contributory": {
+            "type": "boolean"
+          },
+          "cra_code": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "bases": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cc",
+        "atep",
+        "unemployment",
+        "fogasa",
+        "training",
+        "extra_proration",
+        "mei_base",
+        "solidarity_base"
+      ],
+      "properties": {
+        "cc": {
+          "type": "number"
+        },
+        "atep": {
+          "type": "number"
+        },
+        "unemployment": {
+          "type": "number"
+        },
+        "fogasa": {
+          "type": "number"
+        },
+        "training": {
+          "type": "number"
+        },
+        "extra_proration": {
+          "type": "number"
+        },
+        "mei_base": {
+          "type": "number"
+        },
+        "solidarity_base": {
+          "type": "number"
+        }
+      }
+    },
+    "contributions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "worker",
+        "employer",
+        "breakdown"
+      ],
+      "properties": {
+        "worker": {
+          "type": "number"
+        },
+        "employer": {
+          "type": "number"
+        },
+        "breakdown": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "worker",
+              "employer"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "worker": {
+                "type": "number"
+              },
+              "employer": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "withholding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "irpf_rate",
+        "irpf_amount"
+      ],
+      "properties": {
+        "irpf_rate": {
+          "type": "number"
+        },
+        "irpf_amount": {
+          "type": "number"
+        }
+      }
+    },
+    "net": {
+      "type": "number"
+    },
+    "cra_map": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "concept",
+          "cra_code",
+          "amount"
+        ],
+        "properties": {
+          "concept": {
+            "type": "string"
+          },
+          "cra_code": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "trace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rules_applied",
+        "tables_version"
+      ],
+      "properties": {
+        "rules_applied": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tables_version": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "cotizacion_order",
+            "smi_rd",
+            "irpf_source"
+          ],
+          "properties": {
+            "cotizacion_order": {
+              "type": "string"
+            },
+            "smi_rd": {
+              "type": "string"
+            },
+            "irpf_source": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

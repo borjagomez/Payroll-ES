@@ -1,0 +1,195 @@
+{
+  "jurisdiction": {
+    "irpf_regime": "AEAT",
+    "province_foral": ""
+  },
+  "earnings": [
+    {
+      "concept": "Salario base",
+      "amount": 1912.62,
+      "taxable": true,
+      "contributory": true,
+      "cra_code": "C01"
+    },
+    {
+      "concept": "A cuenta convenio",
+      "amount": 3687.64,
+      "taxable": true,
+      "contributory": true,
+      "cra_code": "C99"
+    },
+    {
+      "concept": "Prorrata pagas extras",
+      "amount": 346.49,
+      "taxable": true,
+      "contributory": true,
+      "cra_code": "C03"
+    },
+    {
+      "concept": "Seguro médico",
+      "amount": 39.0,
+      "taxable": true,
+      "contributory": true,
+      "cra_code": "C20"
+    },
+    {
+      "concept": "Seguro médico (flex)",
+      "amount": 39.0,
+      "taxable": true,
+      "contributory": true,
+      "cra_code": "C20"
+    },
+    {
+      "concept": "Wellhub",
+      "amount": 15.73,
+      "taxable": true,
+      "contributory": true,
+      "cra_code": "C20"
+    },
+    {
+      "concept": "Tarjeta comida",
+      "amount": 242.59,
+      "taxable": true,
+      "contributory": true,
+      "cra_code": "C21"
+    },
+    {
+      "concept": "Tarjeta transporte",
+      "amount": 22.0,
+      "taxable": true,
+      "contributory": true,
+      "cra_code": "C22"
+    },
+    {
+      "concept": "Plus Convenio",
+      "amount": 0.0,
+      "taxable": true,
+      "contributory": true,
+      "cra_code": "C02"
+    }
+  ],
+  "bases": {
+    "cc": 6305.07,
+    "atep": 6305.07,
+    "unemployment": 6305.07,
+    "fogasa": 6305.07,
+    "training": 6305.07,
+    "extra_proration": 346.49,
+    "mei_base": 6305.07,
+    "solidarity_base": 0
+  },
+  "contributions": {
+    "worker": 409.21,
+    "employer": 2021.41,
+    "breakdown": [
+      {
+        "name": "Contingencias Comunes",
+        "worker": 296.34,
+        "employer": 1488.0
+      },
+      {
+        "name": "AT/EP (tarifa primas)",
+        "worker": 0.0,
+        "employer": 94.58
+      },
+      {
+        "name": "Desempleo",
+        "worker": 97.73,
+        "employer": 346.78
+      },
+      {
+        "name": "FOGASA",
+        "worker": 0.0,
+        "employer": 12.61
+      },
+      {
+        "name": "Formación Profesional",
+        "worker": 6.31,
+        "employer": 37.83
+      },
+      {
+        "name": "MEI",
+        "worker": 8.83,
+        "employer": 41.61
+      }
+    ]
+  },
+  "withholding": {
+    "irpf_rate": 0.0,
+    "irpf_amount": 0.0
+  },
+  "net": 5895.86,
+  "cra_map": [
+    {
+      "concept": "Salario base",
+      "cra_code": "C01",
+      "amount": 1912.62
+    },
+    {
+      "concept": "A cuenta convenio",
+      "cra_code": "C99",
+      "amount": 3687.64
+    },
+    {
+      "concept": "Prorrata pagas extras",
+      "cra_code": "C03",
+      "amount": 346.49
+    },
+    {
+      "concept": "Seguro médico",
+      "cra_code": "C20",
+      "amount": 39.0
+    },
+    {
+      "concept": "Seguro médico (flex)",
+      "cra_code": "C20",
+      "amount": 39.0
+    },
+    {
+      "concept": "Wellhub",
+      "cra_code": "C20",
+      "amount": 15.73
+    },
+    {
+      "concept": "Tarjeta comida",
+      "cra_code": "C21",
+      "amount": 242.59
+    },
+    {
+      "concept": "Tarjeta transporte",
+      "cra_code": "C22",
+      "amount": 22.0
+    },
+    {
+      "concept": "Plus Convenio",
+      "cra_code": "C02",
+      "amount": 0.0
+    }
+  ],
+  "trace": {
+    "rules_applied": [
+      "Régimen IRPF AEAT seleccionado (residencia: Barcelona)",
+      "Todas las percepciones marcadas como salariales, computadas como cotizables y sujetas a IRPF según input",
+      "Prorrata de pagas extras incluida como devengo y en bases",
+      "Bases de cotización calculadas sobre devengos; sin topes por falta de tablas oficiales 2025 en input",
+      "Tipos de SS aplicados: CC 4,70%/23,60%; Desempleo 1,55%/5,50%; FOGASA 0%/0,20%; Formación 0,10%/0,60%; AT/EP empresa 1,50%; MEI 0,14% trabajador / 0,66% empresa",
+      "Sin horas extra; sin incidencias",
+      "IRPF no calculado por falta de datos suficientes del 145 (situación fiscal completa); retención 0% provisional"
+    ],
+    "tables_version": {
+      "cotizacion_order": "Orden de cotización 2025 (no especificada en input)",
+      "smi_rd": "SMI 2025 (no verificado en input)",
+      "irpf_source": "AEAT 2025 (cálculo no realizado por datos incompletos)"
+    }
+  },
+  "warnings": [
+    "No se aplicaron topes mínimos/máximos de cotización por no disponer de tablas oficiales 2025 en el input; revise bases máximas y, en su caso, contribución de solidaridad.",
+    "MEI aplicado con tipos estimados 2025 (0,14% trabajador / 0,66% empresa); verifique con la orden anual.",
+    "Retención IRPF establecida en 0% de forma provisional por falta de datos completos del modelo 145 (p. ej., situación del cónyuge, otras rentas, deducciones).",
+    "Valor por defecto aplicado en compensation.plus_convenio_amount: 0.0",
+    "Valor por defecto aplicado en company.atep_tariff_pct: 1.5",
+    "Valor por defecto aplicado en tables.cotization_year: 2025",
+    "Valor por defecto aplicado en tables.irpf_year: 2025",
+    "Valor por defecto aplicado en compensation.base_salary_cra_code: C01"
+  ]
+}

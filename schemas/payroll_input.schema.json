@@ -1,0 +1,470 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.eflow/payroll-input.json",
+  "title": "PayrollInputSchema",
+  "type": "object",
+  "required": [
+    "period",
+    "region_config",
+    "worker",
+    "contract",
+    "compensation",
+    "collective_agreement"
+  ],
+  "properties": {
+    "period": {
+      "type": "object",
+      "required": [
+        "year",
+        "month",
+        "payroll_days",
+        "calendar"
+      ],
+      "properties": {
+        "year": {
+          "type": "integer",
+          "minimum": 2024
+        },
+        "month": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "payroll_days": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 31
+        },
+        "calendar": {
+          "type": "object",
+          "required": [
+            "national_holidays",
+            "regional_holidays",
+            "local_holidays"
+          ],
+          "properties": {
+            "national_holidays": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "regional_holidays": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "local_holidays": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "region_config": {
+      "type": "object",
+      "required": [
+        "ccaa",
+        "irpf_regime"
+      ],
+      "properties": {
+        "ccaa": {
+          "type": "string",
+          "enum": [
+            "Andalucía",
+            "Aragón",
+            "Principado de Asturias",
+            "Illes Balears",
+            "Canarias",
+            "Cantabria",
+            "Castilla-La Mancha",
+            "Castilla y León",
+            "Cataluña",
+            "Comunitat Valenciana",
+            "Extremadura",
+            "Galicia",
+            "Comunidad de Madrid",
+            "Región de Murcia",
+            "Comunidad Foral de Navarra",
+            "País Vasco",
+            "La Rioja",
+            "Ceuta",
+            "Melilla"
+          ]
+        },
+        "irpf_regime": {
+          "type": "string",
+          "enum": [
+            "AEAT",
+            "FORAL_NAVARRA",
+            "FORAL_PV"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "worker": {
+      "type": "object",
+      "required": [
+        "nif",
+        "address",
+        "form145",
+        "contribution_group"
+      ],
+      "properties": {
+        "nif": {
+          "type": "string"
+        },
+        "address": {
+          "type": "object",
+          "required": [
+            "province",
+            "municipality"
+          ],
+          "properties": {
+            "province": {
+              "type": "string"
+            },
+            "municipality": {
+              "type": "string"
+            },
+            "postal_code": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "form145": {
+          "type": "object",
+          "required": [
+            "marital_status",
+            "children",
+            "disability_pct"
+          ],
+          "properties": {
+            "marital_status": {
+              "type": "string",
+              "enum": [
+                "single",
+                "married",
+                "separated",
+                "widowed",
+                "registered_partner"
+              ]
+            },
+            "children": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "dependents_other": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "disability_pct": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "mortgage_deduction_older_rules": {
+              "type": "boolean"
+            },
+            "other_adjustments": {
+              "type": "object"
+            }
+          },
+          "additionalProperties": false
+        },
+        "contribution_group": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 11
+        }
+      },
+      "additionalProperties": false
+    },
+    "contract": {
+      "type": "object",
+      "required": [
+        "type",
+        "hours_per_week",
+        "work_schedule"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "indefinido",
+            "fijo_discontinuo",
+            "formativo",
+            "temporal"
+          ]
+        },
+        "hours_per_week": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 40
+        },
+        "work_schedule": {
+          "type": "string",
+          "enum": [
+            "full_time",
+            "part_time"
+          ]
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "additionalProperties": false
+    },
+    "collective_agreement": {
+      "type": "object",
+      "required": [
+        "code",
+        "scope",
+        "level",
+        "salary_table_version"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string",
+          "enum": [
+            "estatal",
+            "autonómico",
+            "provincial",
+            "empresa"
+          ]
+        },
+        "salary_table_version": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "pay_structure": {
+          "type": "object",
+          "required": [
+            "extra_pay_count",
+            "extra_prorated"
+          ],
+          "properties": {
+            "extra_pay_count": {
+              "type": "integer",
+              "enum": [
+                12,
+                13,
+                14
+              ]
+            },
+            "extra_prorated": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "allowances": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "code",
+              "name",
+              "taxable",
+              "contributory",
+              "cra_code",
+              "calc_rule"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "taxable": {
+                "type": "boolean"
+              },
+              "contributory": {
+                "type": "boolean"
+              },
+              "cra_code": {
+                "type": "string"
+              },
+              "calc_rule": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "compensation": {
+      "type": "object",
+      "required": [
+        "base_salary_month",
+        "variables"
+      ],
+      "properties": {
+        "base_salary_month": {
+          "type": "number",
+          "minimum": 0
+        },
+        "base_salary_cra_code": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "amount",
+              "taxable",
+              "contributory",
+              "cra_code"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "number"
+              },
+              "taxable": {
+                "type": "boolean"
+              },
+              "contributory": {
+                "type": "boolean"
+              },
+              "cra_code": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "overtime": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "type",
+              "hours",
+              "rate"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "ordinary",
+                  "structural",
+                  "force_majeure"
+                ]
+              },
+              "hours": {
+                "type": "number",
+                "minimum": 0
+              },
+              "rate": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "incidents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "from",
+          "to"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "IT_CC",
+              "IT_AT",
+              "maternity",
+              "paternity",
+              "unpaid_leave",
+              "ERTE_total",
+              "ERTE_partial"
+            ]
+          },
+          "from": {
+            "type": "string",
+            "format": "date"
+          },
+          "to": {
+            "type": "string",
+            "format": "date"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "company": {
+      "type": "object",
+      "properties": {
+        "cnae": {
+          "type": "string"
+        },
+        "atep_tariff_pct": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "tables": {
+      "type": "object",
+      "properties": {
+        "cotization_year": {
+          "type": "integer"
+        },
+        "irpf_year": {
+          "type": "integer"
+        },
+        "solidarity_enabled": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
